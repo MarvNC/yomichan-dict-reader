@@ -7,11 +7,14 @@ const yomichan = new Yomichan();
   await yomichan.readDictionary(JMDictPath);
   const 家Readings = yomichan.getReadingsForTerm('家');
   console.log(家Readings);
+  console.log(yomichan.getDefinitionsForTerm('家'));
+
   const よいTerms = yomichan.getTermsForReading('よい');
   console.log(よいTerms);
   for (const entry of よいTerms) {
     console.log(yomichan.getDefinitionsForTermReading(entry, 'よい'));
   }
+  
   const allJMDict = await yomichan.getAllEntriesFromDict(JMDictPath);
   console.log('Keys: ', Object.keys(allJMDict).length);
   const allJMDictTerms = await yomichan.getAllTermsInDict(JMDictPath);

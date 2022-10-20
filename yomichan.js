@@ -165,7 +165,21 @@ const Yomichan = class {
   }
 
   /**
-   * 
+   * Gets all the definitions for a single term.
+   * @param {string} term term to search
+   * @returns {Array.<Object>} A list of definitions or an empty array.
+   */
+  getDefinitionsForTerm(term) {
+    const readings = this.getReadingsForTerm(term);
+    let definitions = [];
+    for (const reading of readings) {
+      definitions.push(...this.getDefinitionsForTermReading(term, reading));
+    }
+    return definitions;
+  }
+
+  /**
+   *
    * @returns {Array.<string>} A list of all the dictionaries that have been read.
    */
   getCurrentDicts() {
