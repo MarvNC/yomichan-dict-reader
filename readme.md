@@ -49,19 +49,19 @@ Get definitions as an array:
 //     dict: './test/[Bilingual] JMdict (English) Alternate.zip'
 //   }
 // ]
-console.log(yomichan.getDefinitionsForTermReading('宵', 'よい'));
+yomichan.getDefinitionsForTermReading('宵', 'よい');
 ```
 
 Get all the data in a dictionary as an object:
 
 ```js
-const allJMDict = await yomichan.getAllEntriesFromDict(JMDictPath);
+await yomichan.getAllEntriesFromDict(JMDictPath);
 ```
 
 Get all the terms in a dictionary as a set:
 
 ```js
-const allJMDictTerms = await yomichan.getAllTermsInDict(JMDictPath);
+await yomichan.getAllTermsInDict(JMDictPath);
 ```
 
 Check if a dictionary contains a specific term:
