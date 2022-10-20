@@ -2,7 +2,7 @@
   "name": "yomichan-dict-reader",
   "version": "1.0.1",
   "description": "Reads Japanese dictionaries in a .zip format compatible with Yomichan.",
-  "main": "index.js",
+  "main": "yomichan.js",
   "scripts": {
     "test": "node ./test/test.js"
   },
