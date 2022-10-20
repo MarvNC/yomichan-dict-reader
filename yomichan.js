@@ -95,12 +95,14 @@ const Yomichan = class {
   }
 
   /**
-   * Given a dictionary name, gets every single entry from that dictionary.
+   * Given a dictionary name, gets every single entry from that dictionary
+   * as an object containing every key/reading pair as a comma-separated string
+   * and the definitions as an array.
    * @param {string} filename
    */
   async getAllEntriesFromDict(filename) {
     if (!this.allDicts[filename]) {
-      await readDictionary(filename);
+      await this.readDictionary(filename);
     }
     return this.allDicts[filename];
   }
@@ -160,6 +162,14 @@ const Yomichan = class {
     }
     let data = this.allTermReadingPairsData[[term, reading]];
     return data ?? [];
+  }
+
+  /**
+   * 
+   * @returns {Array.<string>} A list of all the dictionaries that have been read.
+   */
+  getCurrentDicts() {
+    return Object.keys(this.allDicts);
   }
 };
 
