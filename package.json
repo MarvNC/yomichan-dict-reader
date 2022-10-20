@@ -6,9 +6,15 @@
   "scripts": {
     "test": "node ./test/test.js"
   },
+  "keywords": [
+    "japanese",
+    "dictionary",
+    "yomichan"
+  ],
   "author": "Marv",
   "license": "MIT",
   "dependencies": {
     "jszip": "^3.10.1"
-  }
+  },
+  "homepage": "https://github.com/MarvNC/yomichan-dict-reader"
 }
