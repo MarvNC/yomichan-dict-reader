@@ -1,5 +1,7 @@
 # Yomichan Dict Reader
 
+[![npm version](https://badge.fury.io/js/yomichan-dict-reader.svg)](https://badge.fury.io/js/yomichan-dict-reader)
+
 A module for reading Yomichan zip files.
 
 Initialize:
@@ -17,7 +19,7 @@ Get readings of a kanji term:
 
 ```js
 // [ 'いえ', 'うち', 'け', 'や', 'か', 'んち' ]
-const 家 Readings = yomichan.getReadingsForTerm('家');
+yomichan.getReadingsForTerm('家');
 ```
 
 Get kanji terms for a reading:
@@ -30,7 +32,7 @@ Get kanji terms for a reading:
 // '吉い', '宜い',
 // '酔い'
 // ]
-const よい Terms = yomichan.getTermsForReading('よい');
+yomichan.getTermsForReading('よい');
 ```
 
 Get definitions as an array:
