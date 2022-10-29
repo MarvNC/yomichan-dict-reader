@@ -4,10 +4,16 @@
 
 A module for reading Yomichan zip files.
 
+Install:
+
+```
+npm i yomichan-dict-reader
+```
+
 Initialize:
 
 ```js
-const Yomichan = require('../yomichan');
+const Yomichan = require('yomichan-dict-reader');
 const yomichan = new Yomichan();
 const JMDictPath = './test/[Bilingual] JMdict (English) Alternate.zip';
 yomichan.readDictionary(JMDictPath).then(() => {
