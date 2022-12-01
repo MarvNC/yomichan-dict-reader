@@ -4,6 +4,11 @@
 
 A module for reading Yomichan zip files.
 
+Not yet supported:
+- Kanji dictionaries
+- Frequency dictionaries
+- Expanded tag detail (from a term- or dictionary-meta-bank)
+
 Initialize:
 
 ```js
