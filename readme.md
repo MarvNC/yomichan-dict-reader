@@ -11,7 +11,6 @@ npm i yomichan-dict-reader
 ```
 
 Not yet supported:
-- Kanji dictionaries
 - Frequency dictionaries
 - Expanded tag detail (from a term- or dictionary-meta-bank)
 
@@ -83,3 +82,70 @@ Check if a dictionary contains a specific term:
 // true
 yomichan.dictContains(JMDictPath, '家');
 ```
+
+Read a kanji dictionary:
+
+```js
+const KANJIDICPath = './test/kanjidic_english.zip';
+await yomichan.readKanjiDictionary(KANJIDICPath);
+```
+
+Get kanji data:
+
+```js
+// [
+//   {
+//     character: '家',
+//     onyomi: 'カ ケ',
+//     kunyomi: 'いえ や うち',
+//     tags: 'jouyou',
+//     meaningsArr: [
+//       'house',
+//       'home',
+//       'family',
+//       'professional',
+//       'expert',
+//       'performer'
+//     ],
+//     statsObj: {
+//       busy_people: '2.8',
+//       crowley: '46',
+//       deroo: '751',
+//       four_corner: '3023.2',
+//       freq: '133',
+//       gakken: '81',
+//       grade: '2',
+//       halpern_kkd: '2827',
+//       halpern_kkld: '1458',
+//       halpern_kkld_2ed: '1963',
+//       halpern_njecd: '2273',
+//       heisig: '541',
+//       heisig6: '580',
+//       henshall: '83',
+//       henshall3: '89',
+//       jf_cards: '158',
+//       jis208: '1-18-40',
+//       jlpt: '3',
+//       kanji_in_context: '52',
+//       kodansha_compact: '480',
+//       maniette: '547',
+//       moro: '7169',
+//       nelson_c: '1311',
+//       nelson_n: '1337',
+//       oneill_kk: '151',
+//       oneill_names: '1185',
+//       sakade: '53',
+//       sh_desc: '3m7.1',
+//       sh_kk: '165',
+//       sh_kk2: '165',
+//       skip: '2-3-7',
+//       strokes: '10',
+//       tutt_cards: '189',
+//       ucs: '5bb6'
+//     },
+//     dict: './test/kanjidic_english.zip'
+//   }
+// ]
+yomichan.getKanjiInfo('家', KANJIDICPath);
+```
+

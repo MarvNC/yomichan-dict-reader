@@ -14,7 +14,7 @@ const yomichan = new Yomichan();
   for (const entry of よいTerms) {
     console.log(yomichan.getDefinitionsForTermReading(entry, 'よい'));
   }
-  
+
   const allJMDict = await yomichan.getAllEntriesFromDict(JMDictPath);
   console.log('Keys: ', Object.keys(allJMDict).length);
   const allJMDictTerms = await yomichan.getAllTermsInDict(JMDictPath);
@@ -22,4 +22,9 @@ const yomichan = new Yomichan();
   console.log('JMDict contains 家: ', yomichan.dictContains(JMDictPath, '家'));
   console.log('JMDict contains DASDAS: ', yomichan.dictContains(JMDictPath, 'DASDAS'));
   console.log('Finished');
+
+  const KANJIDICPath = './test/kanjidic_english.zip';
+  await yomichan.readKanjiDictionary(KANJIDICPath);
+
+  console.log(yomichan.getKanjiInfo('家', KANJIDICPath));
 })();

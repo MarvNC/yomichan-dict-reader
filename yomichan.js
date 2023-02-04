@@ -2,13 +2,14 @@ const fs = require('fs');
 const jszip = require('jszip');
 
 const termBankRegex = /term_bank_\d+\.json/;
+const kanjiBankRegex = /kanji_bank_\d+\.json/;
 
 const Yomichan = class {
   allTermReadingPairsData = {};
   allKeys = {};
   allReadings = {};
-  // basically allTermReadingPairsData but with a dict key separating out entries for each dict
   allDicts = {};
+  kanjiData = {};
   constructor(path = null) {
     if (path) {
       this.readDictionary(path);
@@ -86,7 +87,7 @@ const Yomichan = class {
 
   /**
    * Reads multiple dictionaries
-   * @param {Array.<string>} dictionaries
+   * @param {string[]} dictionaries
    */
   async readDictionaries(dictionaries) {
     for (const dict of dictionaries) {
@@ -153,7 +154,7 @@ const Yomichan = class {
    * Gets the definitions for a term reading pair.
    * @param {string} term The term in kanji, or hiragana/katakana if no kanji exists for the term.
    * @param {string} reading The reading in hiragana.
-   * @returns {Array.<Object>} A list of definitions or an empty array.
+   * @returns {Object[]} A list of definitions or an empty array.
    */
   getDefinitionsForTermReading(term, reading = '') {
     // if term contains comma and reading is empty, separate into term reading
@@ -180,10 +181,67 @@ const Yomichan = class {
 
   /**
    *
-   * @returns {Array.<string>} A list of all the dictionaries that have been read.
+   * @returns {string[]} A list of all the dictionaries that have been read.
    */
   getCurrentDicts() {
     return Object.keys(this.allDicts);
+  }
+
+  /**
+   * Reads a kanji dictionary
+   * @param {string} dictname
+   * @returns {Promise<void>}
+   */
+  async readKanjiDictionary(dictname) {
+    console.log('Reading kanji dictionary: ', dictname);
+    const zipFile = await fs.promises.readFile(dictname);
+    const zip = await jszip.loadAsync(zipFile);
+
+    this.kanjiData[dictname] = {};
+
+    let fileCount = 0;
+    let entryCount = 0;
+
+    for (const filename of Object.keys(zip.files)) {
+      if (kanjiBankRegex.test(filename)) {
+        console.log(`Reading ${filename} from ${dictname}`);
+        const file = await zip.file(filename).async('string');
+        const json = JSON.parse(file);
+        for (const entry of json) {
+          const [character, onyomi, kunyomi, tags, meaningsArr, statsObj] = entry;
+
+          const thisEntry = {
+            character,
+            onyomi,
+            kunyomi,
+            tags,
+            meaningsArr,
+            statsObj,
+            dict: dictname,
+          };
+
+          // add entry data
+          if (!this.kanjiData[dictname][character]) {
+            this.kanjiData[dictname][character] = [];
+          }
+          this.kanjiData[dictname][character].push(thisEntry);
+
+          entryCount++;
+        }
+        fileCount++;
+      }
+    }
+    console.log(`Read ${fileCount} files with ${entryCount} entries from ${dictname}`);
+  }
+
+  /**
+   * Gets the information for a kanji.
+   * @param {string} kanji
+   * @returns {Object} An object containing the information for the kanji.
+   */
+  getKanjiInfo(kanji, dictname) {
+    let data = this.kanjiData[dictname][kanji];
+    return data ?? [];
   }
 };
 
