@@ -7,7 +7,6 @@ const Yomichan = class {
   allTermReadingPairsData = {};
   allKeys = {};
   allReadings = {};
-  // basically allTermReadingPairsData but with a dict key separating out entries for each dict
   allDicts = {};
   constructor(path = null) {
     if (path) {
@@ -86,7 +85,7 @@ const Yomichan = class {
 
   /**
    * Reads multiple dictionaries
-   * @param {Array.<string>} dictionaries
+   * @param {string[]} dictionaries
    */
   async readDictionaries(dictionaries) {
     for (const dict of dictionaries) {
@@ -153,7 +152,7 @@ const Yomichan = class {
    * Gets the definitions for a term reading pair.
    * @param {string} term The term in kanji, or hiragana/katakana if no kanji exists for the term.
    * @param {string} reading The reading in hiragana.
-   * @returns {Array.<Object>} A list of definitions or an empty array.
+   * @returns {Object[]} A list of definitions or an empty array.
    */
   getDefinitionsForTermReading(term, reading = '') {
     // if term contains comma and reading is empty, separate into term reading
@@ -180,7 +179,7 @@ const Yomichan = class {
 
   /**
    *
-   * @returns {Array.<string>} A list of all the dictionaries that have been read.
+   * @returns {string[]} A list of all the dictionaries that have been read.
    */
   getCurrentDicts() {
     return Object.keys(this.allDicts);
