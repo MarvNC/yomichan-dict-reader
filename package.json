@@ -1,6 +1,6 @@
 {
   "name": "yomichan-dict-reader",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Reads Japanese dictionaries in a .zip format compatible with Yomichan.",
   "main": "yomichan.js",
   "scripts": {
