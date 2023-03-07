@@ -11,6 +11,7 @@ npm i yomichan-dict-reader
 ```
 
 Not yet supported:
+
 - Frequency dictionaries
 - Expanded tag detail (from a term- or dictionary-meta-bank)
 
@@ -62,6 +63,13 @@ Get definitions as an array:
 //   }
 // ]
 yomichan.getDefinitionsForTermReading('宵', 'よい');
+```
+
+Get the deinflectors as a string for a term-reading pair:
+
+```js
+// 'v5'
+yomichan.getDeinflectorsForTermReading('出す', 'だす');
 ```
 
 Get all the data in a dictionary as an object:
@@ -148,4 +156,3 @@ Get kanji data:
 // ]
 yomichan.getKanjiInfo('家', KANJIDICPath);
 ```
-

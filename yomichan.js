@@ -183,7 +183,7 @@ const Yomichan = class {
    * Gets all the deinflectors for a term and reading pair.
    * @param {string} term
    * @param {string} reading
-   * @returns {Array.<Object>} A list of deinflectors or an empty array.
+   * @returns {string} A space-separated list of deinflectors.
    */
   getDeinflectorsForTermReading(term, reading) {
     const definitions = this.getDefinitionsForTermReading(term, reading);
