@@ -180,6 +180,23 @@ const Yomichan = class {
   }
 
   /**
+   * Gets all the deinflectors for a term and reading pair.
+   * @param {string} term
+   * @param {string} reading
+   * @returns {Array.<Object>} A list of deinflectors or an empty array.
+   */
+  getDeinflectorsForTermReading(term, reading) {
+    const definitions = this.getDefinitionsForTermReading(term, reading);
+    if (definitions.length == 0) return [];
+    // combine deinflectors from all definitions
+    let deinflectors = [];
+    for (const definition of definitions) {
+      deinflectors.push(...definition.deinflectors.split(' '));
+    }
+    return [...new Set(deinflectors)].join(' ');
+  }
+
+  /**
    *
    * @returns {string[]} A list of all the dictionaries that have been read.
    */

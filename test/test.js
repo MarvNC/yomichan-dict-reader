@@ -15,6 +15,9 @@ const yomichan = new Yomichan();
     console.log(yomichan.getDefinitionsForTermReading(entry, 'よい'));
   }
 
+  const yoiDeinflectors = yomichan.getDeinflectorsForTermReading('出す', 'だす');
+  console.log(yoiDeinflectors);
+
   const allJMDict = await yomichan.getAllEntriesFromDict(JMDictPath);
   console.log('Keys: ', Object.keys(allJMDict).length);
   const allJMDictTerms = await yomichan.getAllTermsInDict(JMDictPath);
