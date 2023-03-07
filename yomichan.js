@@ -161,7 +161,10 @@ const Yomichan = class {
     if (term.includes(',') && reading == '') {
       [term, reading] = term.split(',');
     }
+    // if term is same as reading, check definitions for empty reading too
+
     let data = this.allTermReadingPairsData[[term, reading]];
+    data = data ?? this.allTermReadingPairsData[[term, '']];
     return data ?? [];
   }
 
