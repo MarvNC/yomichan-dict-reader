@@ -190,7 +190,7 @@ const Yomichan = class {
    */
   getDeinflectorsForTermReading(term, reading) {
     const definitions = this.getDefinitionsForTermReading(term, reading);
-    if (definitions.length == 0) return [];
+    if (definitions.length == 0) return '';
     // combine deinflectors from all definitions
     let deinflectors = [];
     for (const definition of definitions) {
